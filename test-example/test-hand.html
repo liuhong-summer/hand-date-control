@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/test-hand.css">
+    <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="js/getNL.js"></script>
+    <script type="text/javascript" src="js/hand-date-net.js"></script>
+</head>
+<body>
+<div class="width24 fl">
+    <div class="m-card" id="test">
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#test").calendar({});
+
+        $(".item").mousedown(function(e){
+           if(e.which == 3){
+               console.log(1);
+               $(".rightList").remove();
+               var classStyle = $(this).attr("class");
+               var text;
+               if($(this).hasClass("item")){
+                   if($(this).hasClass("bg")){
+                       text = "设为工作日";
+                   }else if(classStyle.indexOf('bg-no') == -1){
+                       text = "设为休假";
+                   }
+               }
+               var rightList = "<ul class='rightList'>" +
+                   "<li>"+text+"</li>" +
+                   "<li>取消</li>" +
+                   "</ul>";
+               if(text != undefined){
+                   $(this).siblings().find(".rightList").hide();
+                   $(this).parent("tr").siblings().find(".rightList").hide();
+                   $(this).find(".data-contain").append(rightList);
+               }
+           }
+        });
+        $(document).on("click",".rightList li",function(){
+            var text = $(this).text();
+            var showText;
+            if(text == "设为休假"){
+                $(this).parents(".data-contain").find('.rest').remove();
+                showText = "休";
+                $(this).parents(".data-contain").append("<div class='rest'>"+showText+"</div>")
+            }
+            if(text == "设为工作日"){
+                $(this).parents(".data-contain").find('.rest').remove();
+                showText = "班";
+                $(this).parents(".data-contain").append("<div class='rest'>"+showText+"</div>")
+            }
+            if(text == "取消"){
+                $(this).parents(".data-contain").find('.rest').remove();
+            }
+        });
+
+        $(document).on("click",function(){
+            $(".rightList").hide();
+        })
+
+    })
+</script>
+</body>
+</html>

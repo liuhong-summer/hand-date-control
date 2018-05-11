@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自己照着网上的事件写时间控件</title>
+    <link rel="stylesheet" href="css/hand-date.css">
+    <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="js/getNL.js"></script>
+    <script type="text/javascript" src="js/hand-date.js"></script>
+</head>
+<body>
+<div id="dateExample">
+
+</div>
+<script type="text/javascript">
+    $("#dateExample").calendar(function(){
+
+    });
+    $(".item").mousedown(function(e){
+        if(e.which == 3){
+            $(".rightList").remove();
+            var classStyle = $(this).attr("class");
+            var text;
+            if($(this).hasClass("currentMonth")){
+                if(!$(this).hasClass("weekend")){
+                    text = "设为休假";
+                }else {
+                    text = "设为工作日";
+                }
+            }
+            var rightList = "<ul class='rightList'>" +
+                "<li>"+text+"</li>" +
+                "<li>取消</li>" +
+                "</ul>";
+            if(text != undefined){
+                $(this).siblings().find(".rightList").hide();
+                $(this).parent("tr").siblings().find(".rightList").hide();
+                $(this).find(".item-contain").append(rightList);
+            }
+        }
+    });
+    $(document).on("click",".rightList li",function(){
+        var text = $(this).text();
+        var showText;
+        if(text == "设为休假"){
+            $(this).parents(".item-contain").find('.rest').remove();
+            showText = "休";
+            $(this).parents(".item-contain").append("<div class='rest'>"+showText+"</div>")
+        }
+        if(text == "设为工作日"){
+            $(this).parents(".item-contain").find('.rest').remove();
+            showText = "班";
+            $(this).parents(".item-contain").append("<div class='rest'>"+showText+"</div>")
+        }
+        if(text == "取消"){
+            $(this).parents(".item-contain").find('.rest').remove();
+        }
+    });
+
+    $(document).on("click",function(){
+        $(".rightList").hide();
+    })
+</script>
+</body>
+</html>

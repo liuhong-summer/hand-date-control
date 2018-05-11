@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.calendarTitle{
+    width: 235px;
+    background: powderblue;
+    padding: 10px;
+}
+.backDay{
+    width: 70px;
+    padding: 5px 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background: #00BCD4;
+}
+.calendarBody table{
+    width: 235px;
+    border: 1px solid powderblue;
+}
+.calendarBody th,.calendarBody td{
+    /*padding: 5px;*/
+    padding: 5px 0;
+
+}
+.calendarBody td{
+    border-top: 1px solid powderblue;
+}
+.item-contain{
+    position: relative;
+    width: 48px;
+    text-align: center;
+}
+.item.today{
+    background: powderblue;
+    color: white;
+}
+.item.otherMonth{
+    color: darkgray;
+}
+.nl{
+    font-size: 12px;
+    color: red;
+}
+
+/*右键列表*/
+.rightList{
+    position: absolute;
+    left: 38px;
+    top: 20px;
+    background: white;
+    width: 82px;
+    z-index: 3;
+    border: 1px solid #b7d2ff;
+}
+.rightList li{
+    border-bottom: 1px solid #b7d2ff;
+}
+.rightList li:hover{
+    background: #b7d2ff;
+    color: white;
+}
+.rightList li:last-child{
+    border-bottom: none;
+}
+.rest{
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+    /* width: 15px; */
+    /* height: 15px; */
+    background: red;
+    padding: 2px;
+    font-size: 13px;
+}
+.item .data-contain .active1{
+    border: 1px solid blueviolet;
+}
+.year-title{
+    padding-left: 5px;
+}
